@@ -410,7 +410,6 @@ spec:
             - "entrypoint.sh"
           args:
             - argocd-repo-server
-            - --insecure
             - --port=8081
             - --metrics-port=8084
           env:
@@ -706,6 +705,7 @@ spec:
           imagePullPolicy: IfNotPresent
           command:
             - argocd-server
+            - --insecure
             - --port=8080
             - --metrics-port=8083
           env:

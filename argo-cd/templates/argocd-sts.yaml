@@ -18,7 +18,7 @@ spec:
       release: argocd
       app: redis-ha
   serviceName: argocd-redis-ha
-  replicas: 3
+  replicas: 2
   podManagementPolicy: OrderedReady
   updateStrategy:
     type: RollingUpdate
