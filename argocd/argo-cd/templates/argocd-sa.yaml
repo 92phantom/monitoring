@@ -1,0 +1,145 @@
+---
+# Source: argo-cd/charts/redis-ha/templates/redis-ha-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argocd-redis-ha
+  namespace: "argocd"
+  labels:
+    heritage: Helm
+    release: argocd
+    chart: redis-ha-4.22.5
+    app: argocd-redis-ha
+---
+# Source: argo-cd/charts/redis-ha/templates/redis-haproxy-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argocd-redis-ha-haproxy
+  namespace: "argocd"
+  labels:
+    heritage: Helm
+    release: argocd
+    chart: redis-ha-4.22.5
+    app: argocd-redis-ha
+---
+# Source: argo-cd/templates/argocd-application-controller/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: argocd-application-controller
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-application-controller
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: application-controller
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+---
+# Source: argo-cd/templates/argocd-applicationset/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: argocd-applicationset-controller
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-applicationset-controller
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: applicationset-controller
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+---
+# Source: argo-cd/templates/argocd-notifications/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: argocd-notifications-controller
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-notifications-controller
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: notifications-controller
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+---
+# Source: argo-cd/templates/argocd-repo-server/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: argocd-repo-server
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-repo-server
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: repo-server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+---
+# Source: argo-cd/templates/argocd-server/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: argocd-server
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+---
+# Source: argo-cd/templates/dex/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: argocd-dex-server
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-dex-server
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: dex-server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+---
+# Source: argo-cd/templates/argocd-configs/argocd-notifications-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-notifications-secret
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-notifications-controller
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: notifications-controller
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+type: Opaque
+stringData:
+---
+# Source: argo-cd/templates/argocd-configs/argocd-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-secret
+  namespace: "argocd"
+  labels:
+    helm.sh/chart: argo-cd-5.29.1
+    app.kubernetes.io/name: argocd-secret
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: server
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: argocd
+type: Opaque
