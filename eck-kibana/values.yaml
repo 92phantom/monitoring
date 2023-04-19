@@ -45,7 +45,7 @@ spec:
   http:
     service:
       spec:
-        type: ClusterIP
+        type: NodePort
     tls:
       selfSignedCertificate:
         disabled: true
