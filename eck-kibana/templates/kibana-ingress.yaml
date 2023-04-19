@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: kibana
+  namespace: eck
+spec:
+  rules:
+  - host: kibana.life-in-valley.tk
+    http:
+      paths:
+      - backend:
+          service:
+            name: eck-kibana-kb-http
+            port:
+              number: 5601
+        path: /
+        pathType: Prefix
