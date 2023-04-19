@@ -129,7 +129,7 @@ clusterRoleBinding:
   subjects:
     - kind: ServiceAccount
       name: elastic-beat-filebeat-quickstart
-      namespace: elastic
+      namespace: eck
   roleRef:
     kind: ClusterRole
     name: elastic-beat-autodiscover
