@@ -112,7 +112,7 @@ spec:
       - add_cloud_metadata: {}
       - add_host_metadata: {}
     output.logstash:
-      hosts: [ logstash-logstash:5044 ]
+      hosts: [ eck-logstash-logstash:5044 ]
 
 # ServiceAccount to be used by Elastic Beats. Some Beats features (such as autodiscover or Kubernetes module metricsets)
 # require that Beat Pods interact with Kubernetes APIs. This functionality requires specific permissions
