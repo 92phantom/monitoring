@@ -26,6 +26,11 @@ logstashPipeline:
       }
     }
     filter {
+      date {
+        match => ["setdt", "yyyyMMdd'T'HHmmss"]
+        timezone => "Asia/Seoul"
+        target => "setdt"
+      }
       mutate {
         remove_field => [ "agent", "container", "ecs", "event", "input", "log", "tags" ]
       }
@@ -47,7 +52,7 @@ logstashPipeline:
         ssl_certificate_verification => false
         user => "elastic"
         password => "${elastic}"
-        index => "stdout" 
+        index => "stdout-%{+YYYY.MM.dd}" 
       }
     }
 
