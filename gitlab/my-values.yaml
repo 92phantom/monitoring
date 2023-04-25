@@ -49,7 +49,7 @@ global:
     allowClusterRoles: true
   ## https://docs.gitlab.com/charts/charts/globals#configure-host-settings
   hosts:
-    domain: myweb.io
+    domain: life-in-vallley.tk
     hostSuffix:
     https: true
     externalIP:
@@ -783,7 +783,7 @@ certmanager:
 ## https://docs.gitlab.com/charts/architecture/decisions#nginx-ingress
 ## Installation & configuration of charts/ingress-nginx:
 nginx-ingress:
-  enabled: true
+  enabled: false
   tcpExternalConfig: "true"
   controller:
     addHeaders:
