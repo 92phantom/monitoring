@@ -368,8 +368,8 @@ resources:
   #  cpu: 1.5
   #  memory: 3G
   requests:
-    cpu: 300m
-    memory: 2.5G
+    cpu: 100m
+    memory: 500M
 maxUnavailable: 1
 minReplicas: 2
 maxReplicas: 10
