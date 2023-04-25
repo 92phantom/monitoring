@@ -51,7 +51,7 @@ global:
   hosts:
     domain: life-in-vallley.tk
     hostSuffix:
-    https: true
+    https: false
     externalIP:
     ssh: ~
     gitlab: {}
@@ -66,8 +66,8 @@ global:
   ingress:
     apiVersion: ""
     configureCertmanager: true
-    provider: nginx
-    # class:
+    # provider: nginx
+    class: nginx
     annotations: {}
     enabled: true
     tls: {}
