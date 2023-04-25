@@ -27,7 +27,8 @@ global:
   common:
     labels: {}
 
-  image: {}
+  image:
+    {}
     # pullPolicy: IfNotPresent
     # pullSecrets: []
 
@@ -79,14 +80,16 @@ global:
     ## Enterprise license for this GitLab installation
     ## Secret created according to https://docs.gitlab.com/charts/installation/secrets#initial-enterprise-license
     ## If allowing shared-secrets generation, this is OPTIONAL.
-    license: {}
+    license:
+      {}
       # secret: RELEASE-gitlab-license
       # key: license
 
   ## Initial root password for this GitLab installation
   ## Secret created according to https://docs.gitlab.com/charts/installation/secrets#initial-root-password
   ## If allowing shared-secrets generation, this is OPTIONAL.
-  initialRootPassword: {}
+  initialRootPassword:
+    {}
     # secret: RELEASE-gitlab-initial-root-password
     # key: password
 
@@ -98,7 +101,8 @@ global:
     keepalivesInterval:
     keepalivesCount:
     tcpUserTimeout:
-    password: {}
+    password:
+      {}
       # useSecret:
       # secret:
       # key:
@@ -126,7 +130,8 @@ global:
   ## https://docs.gitlab.com/charts/charts/globals#configure-gitaly-settings
   gitaly:
     enabled: true
-    authToken: {}
+    authToken:
+      {}
       # secret:
       # key:
     # serviceName:
@@ -173,7 +178,8 @@ global:
   ## https://docs.gitlab.com/charts/charts/globals#configure-minio-settings
   minio:
     enabled: true
-    credentials: {}
+    credentials:
+      {}
       # secret:
 
   ## https://docs.gitlab.com/charts/charts/globals#configure-grafana-integration
@@ -202,7 +208,8 @@ global:
     maxRequestDurationSeconds:
 
     ## https://docs.gitlab.com/charts/charts/globals#cron-jobs-related-settings
-    cron_jobs: {}
+    cron_jobs:
+      {}
       ## Flag stuck CI builds as failed
       # stuck_ci_jobs_worker:
       #   cron: "0 * * * *"
@@ -284,31 +291,36 @@ global:
     object_store:
       enabled: false
       proxy_download: true
-      storage_options: {}
+      storage_options:
+        {}
         # server_side_encryption:
         # server_side_encryption_kms_key_id
-      connection: {}
+      connection:
+        {}
         # secret:
         # key:
     lfs:
       enabled: true
       proxy_download: true
       bucket: git-lfs
-      connection: {}
+      connection:
+        {}
         # secret:
         # key:
     artifacts:
       enabled: true
       proxy_download: true
       bucket: gitlab-artifacts
-      connection: {}
+      connection:
+        {}
         # secret:
         # key:
     uploads:
       enabled: true
       proxy_download: true
       bucket: gitlab-uploads
-      connection: {}
+      connection:
+        {}
         # secret:
         # key:
     packages:
@@ -363,7 +375,8 @@ global:
         key: secret
       pollInterval: 60
       deliveryMethod: sidekiq
-      authToken: {}
+      authToken:
+        {}
         # secret:
         # key:
 
@@ -389,7 +402,8 @@ global:
         key: secret
       pollInterval: 60
       deliveryMethod: sidekiq
-      authToken: {}
+      authToken:
+        {}
         # secret:
         # key:
 
@@ -401,7 +415,8 @@ global:
       ## See documentation for complete example of a configured LDAP server
 
     ## https://docs.gitlab.com/charts/charts/globals#kas-settings
-    gitlab_kas: {}
+    gitlab_kas:
+      {}
       # secret:
       # key:
       # enabled:
@@ -442,12 +457,14 @@ global:
       routingRules: []
 
     # Config that only applies to the defaults on initial install
-    initialDefaults: {}
+    initialDefaults:
+      {}
       # signupEnabled:
   ## End of global.appConfig
 
   oauth:
-    gitlab-pages: {}
+    gitlab-pages:
+      {}
       # secret:
       # appIdKey:
       # appSecretKey:
@@ -497,7 +514,8 @@ global:
     authToken: {}
     # secret:
     # key:
-    hostKeys: {}
+    hostKeys:
+      {}
       # secret:
     ## https://docs.gitlab.com/charts/charts/globals#tcp-proxy-protocol
     tcp:
@@ -506,7 +524,8 @@ global:
   ## Rails application secrets
   ## Secret created according to https://docs.gitlab.com/charts/installation/secrets#gitlab-rails-secret
   ## If allowing shared-secrets generation, this is OPTIONAL.
-  railsSecrets: {}
+  railsSecrets:
+    {}
     # secret:
 
   ## Rails generic setting, applicable to all Rails-based containers
@@ -517,16 +536,20 @@ global:
   ## https://docs.gitlab.com/charts/charts/globals#configure-registry-settings
   registry:
     bucket: registry
-    certificate: {}
+    certificate:
+      {}
       # secret:
-    httpSecret: {}
+    httpSecret:
+      {}
       # secret:
       # key:
-    notificationSecret: {}
+    notificationSecret:
+      {}
       # secret:
       # key:
     # https://docs.docker.com/registry/notifications/#configuration
-    notifications: {}
+    notifications:
+      {}
       # endpoints:
       #   - name: FooListener
       #     url: https://foolistener.com/event
@@ -559,13 +582,16 @@ global:
       enabled: true
       bucket: gitlab-pages
       # proxy_download: true
-      connection: {}
+      connection:
+        {}
         # secret:
         # key:
-    apiSecret: {}
+    apiSecret:
+      {}
       # secret:
       # key:
-    authSecret: {}
+    authSecret:
+      {}
       # secret:
       # key:
 
@@ -573,7 +599,8 @@ global:
   ## Secret created according to https://docs.gitlab.com/charts/installation/secrets#gitlab-runner-secret
   ## If allowing shared-secrets generation, this is OPTIONAL.
   runner:
-    registrationToken: {}
+    registrationToken:
+      {}
       # secret:
 
   ## https://docs.gitlab.com/charts/installation/deployment#outgoing-email
@@ -717,8 +744,9 @@ global:
 ## End of global
 
 upgradeCheck:
-  enabled: true
-  image: {}
+  enabled: false
+  image:
+    {}
     # repository:
     # tag:
     # pullPolicy: IfNotPresent
@@ -734,9 +762,9 @@ upgradeCheck:
 
 ## Settings to for the Let's Encrypt ACME Issuer
 certmanager-issuer:
-#   # The email address to register certificates requested from Let's Encrypt.
-#   # Required if using Let's Encrypt.
-   email: test@myweb.io
+  #   # The email address to register certificates requested from Let's Encrypt.
+  #   # Required if using Let's Encrypt.
+  email: test@myweb.io
 
 ## Installation & configuration of jetstack/cert-manager
 ## See requirements.yaml for current version
