@@ -27,6 +27,8 @@ spec:
         app.kubernetes.io/part-of: ingress-nginx
         app.kubernetes.io/version: 1.7.0
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: numble-worker-w-2m0t
       containers:
         - args:
             - /nginx-ingress-controller
