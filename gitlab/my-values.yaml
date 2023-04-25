@@ -49,7 +49,7 @@ global:
     allowClusterRoles: true
   ## https://docs.gitlab.com/charts/charts/globals#configure-host-settings
   hosts:
-    domain: life-in-vallley.tk
+    domain: life-in-valley.tk
     hostSuffix:
     https: false
     externalIP:
