@@ -893,7 +893,7 @@ grafana:
   ##
   service:
     portName: http-web
-    type: LoadBalancer
+    type: ClusterIP
 
   serviceMonitor:
     # If true, a ServiceMonitor CRD is created for a prometheus operator
