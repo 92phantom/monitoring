@@ -70,8 +70,8 @@ global:
     class: nginx
     annotations: {}
     enabled: true
-    tls: {}
-    #   enabled: true
+    tls:
+      enabled: false
     #   secretName:
     path: /
     pathType: Prefix
