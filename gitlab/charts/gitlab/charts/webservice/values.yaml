@@ -1,14 +1,16 @@
 # Default values for webservice.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-image: {}
+image:
+  {}
   # pullPolicy: IfNotPresent
   # pullSecrets: []
   # repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-webservice-ee
   # tag: master
 
 init:
-  image: {}
+  image:
+    {}
     # repository:
     # tag:
     # pullPolicy: IfNotPresent
@@ -22,7 +24,7 @@ tolerations: []
 monitoring:
   # Monitoring IP whitelist
   ipWhitelist:
-  - 0.0.0.0/0
+    - 0.0.0.0/0
   exporter:
     enabled: false
     port: 8083
@@ -51,10 +53,10 @@ sshHostKeys:
   # defines which types of public SSH host keys to mount so that their fingerprints
   # are available under /help/instance_configuration
   types:
-  - dsa
-  - rsa
-  - ecdsa
-  - ed25519
+    - dsa
+    - rsa
+    - ecdsa
+    - ed25519
 
 metrics:
   enabled: true
@@ -92,7 +94,8 @@ ingress:
   proxyConnectTimeout: 15
   proxyReadTimeout: 600
   proxyBodySize: "512m"
-  tls: {}
+  tls:
+    {}
     # secretName:
     # smartcardSecretName:
     # enabled: true
@@ -145,8 +148,8 @@ workhorse:
   logFormat: json # valid: (json, structured, text)
   resources:
     requests:
-      cpu: 100m
-      memory: 100M
+      cpu: 50m
+      memory: 50M
   # shutdownTimeout:
   # image: registry.gitlab.com/gitlab-org/build/cng/gitlab-workhorse-ee
   livenessProbe:
@@ -177,30 +180,36 @@ workhorse:
     maxProcs: 2 # aim for max(2, requested_cpus / 2)
     maxFileSizeBytes: 250000
 
-psql: {}
+psql:
+  {}
   # port: 5432
 
 global:
   ingress:
     enabled:
     annotations: {}
-    tls: {}
+    tls:
+      {}
       # secretName:
       # enabled: true
   hosts:
     domain: example.com
     hostSuffix:
     https: true
-    gitlab: {}
+    gitlab:
+      {}
       #name: gitlab.example.com
       #https: false
-    registry: {}
+    registry:
+      {}
       #name: registry.example.com
       #https: false
-    minio: {}
+    minio:
+      {}
       #name: minio.example.com
       #https: false
-  psql: {}
+  psql:
+    {}
     # host: '0.0.0.0'
     # port: '5432'
     # database: 'gitlabhq_production'
@@ -227,7 +236,8 @@ global:
   minio:
     enabled:
     credentials: {}
-  webservice: {}
+  webservice:
+    {}
     # workerTimeout: 60
   appConfig:
     incomingEmail:
@@ -237,13 +247,15 @@ global:
       enabled: false
       address:
     object_store:
-      connection: {}
+      connection:
+        {}
         # provider: AWS
         # region: us-east-1
         # secret:
         # secret_key:
         # access_key:
-      storage_options: {}
+      storage_options:
+        {}
         # server_side_encryption:
         # server_side_encrypton_kms_key_id:
     lfs:
@@ -295,8 +307,8 @@ global:
       enabled: false
       autoSignInWithProvider:
       syncProfileFromProvider: []
-      syncProfileAttributes: ['email']
-      allowSingleSignOn: ['saml']
+      syncProfileAttributes: ["email"]
+      allowSingleSignOn: ["saml"]
       blockAutoCreatedUsers: true
       autoLinkLdapUser: false
       autoLinkSamlUser: false
@@ -322,7 +334,7 @@ gitaly:
   #   secret: gitaly-secret
   #   key: token
 minio:
-  serviceName: 'minio-svc'
+  serviceName: "minio-svc"
   port: 9000
 registry:
   enabled: true
@@ -333,7 +345,8 @@ registry:
     serviceName: registry
     port: 5000
   tokenIssuer: gitlab-issuer
-extra: {}
+extra:
+  {}
   # google_analytics_id: '_your_tracking_id'
   # matomo_url: '_your_matomo_url'
   # matomo_site_id: '_your_matomo_site_id'
@@ -403,7 +416,8 @@ priorityClassName: ""
 #  end of each resource `.metadata.name`, and added as a label to each
 #  resource for tracking.
 #  https://docs.gitlab.com/charts/charts/gitlab/webservice/#deployments
-deployments: {}
+deployments:
+  {}
   # There must always be at least one, with `xyz.ingress.path: /`
   # unless `ingress.requireBasePath: false`
   #
