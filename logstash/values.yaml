@@ -52,7 +52,11 @@ logstashPipeline:
         ssl_certificate_verification => false
         user => "elastic"
         password => "${elastic}"
-        index => "stdout-%{+YYYY.MM.dd}-000001" 
+        # index => "stdout-%{+YYYY.MM.dd}-000001" 
+        ilm_enabled => true
+        ilm_rollover_alias => "logstash"
+        ilm_pattern => "%{+YYYY.MM.dd}-000001"
+        ilm_policy => "my-ilm"
       }
     }
 
