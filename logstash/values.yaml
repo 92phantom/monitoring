@@ -52,7 +52,7 @@ logstashPipeline:
         ssl_certificate_verification => false
         user => "elastic"
         password => "${elastic}"
-        index => "stdout-%{+YYYY.MM.dd}" 
+        index => "stdout-%{+YYYY.MM.dd}-000001" 
       }
     }
 
