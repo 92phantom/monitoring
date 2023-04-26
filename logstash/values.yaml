@@ -55,8 +55,8 @@ logstashPipeline:
         # index => "stdout-%{+YYYY.MM.dd}-000001" 
         ilm_enabled => true
         ilm_rollover_alias => "logstash"
-        ilm_pattern => "%{+YYYY.MM.dd}-000001"
-        ilm_policy => "my-ilm"
+        ilm_pattern => "000001"
+        ilm_policy => "stdout-delete-policy"
       }
     }
 
