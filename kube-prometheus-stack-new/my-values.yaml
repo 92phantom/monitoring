@@ -729,7 +729,8 @@ grafana:
     ##
     # hosts:
     #   - grafana.domain.com
-    hosts: grafana.life-in-valley.tk
+    hosts:
+      - grafana.life-in-valley.tk
 
     ## Path for grafana ingress
     path: /
@@ -2039,7 +2040,8 @@ prometheus:
     ##
     # hosts:
     #   - prometheus.domain.com
-    hosts: prometheus.life-in-valley
+    hosts:
+      - prometheus.life-in-valley
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
