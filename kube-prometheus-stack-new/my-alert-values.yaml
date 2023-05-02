@@ -110,7 +110,8 @@ global:
     ## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
     createAggregateClusterRoles: false
     pspEnabled: false
-    pspAnnotations: {}
+    pspAnnotations:
+      {}
       ## Specify pod annotations
       ## Ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/#apparmor
       ## Ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/#seccomp
@@ -132,7 +133,6 @@ global:
 ## ref: https://prometheus.io/docs/alerting/alertmanager/
 ##
 alertmanager:
-
   ## Deploy alertmanager
   ##
   enabled: true
@@ -173,43 +173,43 @@ alertmanager:
       # slack_api_url: https://hooks.slack.com
     inhibit_rules:
       - source_matchers:
-          - 'severity = critical'
+          - "severity = critical"
         target_matchers:
-          - 'severity =~ warning|info'
+          - "severity =~ warning|info"
         equal:
-          - 'namespace'
-          - 'alertname'
+          - "namespace"
+          - "alertname"
       - source_matchers:
-          - 'severity = warning'
+          - "severity = warning"
         target_matchers:
-          - 'severity = info'
+          - "severity = info"
         equal:
-          - 'namespace'
-          - 'alertname'
+          - "namespace"
+          - "alertname"
       - source_matchers:
-          - 'alertname = InfoInhibitor'
+          - "alertname = InfoInhibitor"
         target_matchers:
-          - 'severity = info'
+          - "severity = info"
         equal:
-          - 'namespace'
+          - "namespace"
     route:
-      group_by: ['namespace']
+      group_by: ["namespace"]
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      receiver: 'slack-notifications'
+      receiver: "slack-notifications"
       routes:
-      - receiver: 'slack-notifications'
-        matchers:
-          - alertname =~ "InfoInhibitor|Watchdog"
+        - receiver: "slack-notifications"
+          matchers:
+            - alertname =~ "InfoInhibitor|Watchdog"
     receivers:
-    - name: 'null'
-    - name: 'slack-notifications'
-      slack_configs:
-      - channel: '#k8s-alert'
-        send_resolved: true      
+      - name: "null"
+      - name: "slack-notifications"
+        slack_configs:
+          - channel: "#k8s-alert"
+            send_resolved: true
     templates:
-    - '/etc/alertmanager/config/*.tmpl'
+      - "/etc/alertmanager/config/*.tmpl"
 
   ## Pass the Alertmanager configuration directives through Helm's templating
   ## engine. If the Alertmanager configuration contains Alertmanager templates,
@@ -262,7 +262,8 @@ alertmanager:
 
     ## Hosts must be provided if Ingress is enabled.
     ##
-    hosts: []
+    hosts:
+      []
       # - alertmanager.domain.com
 
     ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
@@ -546,7 +547,6 @@ alertmanager:
     #         storage: 50Gi
     #     selector: {}
 
-
     ## The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. string  false
     ##
     externalUrl:
@@ -720,7 +720,8 @@ grafana:
 
     ## Annotations for Grafana Ingress
     ##
-    annotations: {}
+    annotations:
+      {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
 
@@ -1255,7 +1256,6 @@ kubeEtcd:
     #   replacement: $1
     #   action: replace
 
-
 ## Component scraping kube scheduler
 ##
 kubeScheduler:
@@ -1319,7 +1319,6 @@ kubeScheduler:
     #   replacement: $1
     #   action: replace
 
-
 ## Component scraping kube proxy
 ##
 kubeProxy:
@@ -1369,7 +1368,6 @@ kubeProxy:
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
-
 
 ## Component scraping kube state metrics
 ##
@@ -1542,9 +1540,9 @@ prometheusOperator:
       enabled: false
       # self-signed root certificate
       rootCert:
-        duration: ""  # default to be 5y
+        duration: "" # default to be 5y
       admissionCert:
-        duration: ""  # default to be 1y
+        duration: "" # default to be 1y
       # issuerRef:
       #   name: "issuer"
       #   kind: "ClusterIssuer"
@@ -1552,7 +1550,8 @@ prometheusOperator:
   ## Namespaces to scope the interaction of the Prometheus Operator and the apiserver (allow list).
   ## This is mutually exclusive with denyNamespaces. Setting this to an empty object will disable the configuration
   ##
-  namespaces: {}
+  namespaces:
+    {}
     # releaseNamespace: true
     # additional:
     # - kube-system
@@ -1587,21 +1586,21 @@ prometheusOperator:
     labels: {}
     clusterIP: ""
 
-  ## Port to expose on each node
-  ## Only used if service.type is 'NodePort'
-  ##
+    ## Port to expose on each node
+    ## Only used if service.type is 'NodePort'
+    ##
     nodePort: 30080
 
     nodePortTls: 30443
 
-  ## Additional ports to open for Prometheus service
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#multi-port-services
-  ##
+    ## Additional ports to open for Prometheus service
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#multi-port-services
+    ##
     additionalPorts: []
 
-  ## Loadbalancer IP
-  ## Only use if service.type is "LoadBalancer"
-  ##
+    ## Loadbalancer IP
+    ## Only use if service.type is "LoadBalancer"
+    ##
     loadBalancerIP: ""
     loadBalancerSourceRanges: []
 
@@ -1609,9 +1608,9 @@ prometheusOperator:
     ##
     externalTrafficPolicy: Cluster
 
-  ## Service type
-  ## NodePort, ClusterIP, LoadBalancer
-  ##
+    ## Service type
+    ## NodePort, ClusterIP, LoadBalancer
+    ##
     type: ClusterIP
 
     ## List of IP addresses at which the Prometheus server service is available
@@ -1705,7 +1704,8 @@ prometheusOperator:
   ## Assign custom affinity rules to the prometheus operator
   ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
   ##
-  affinity: {}
+  affinity:
+    {}
     # nodeAffinity:
     #   requiredDuringSchedulingIgnoredDuringExecution:
     #     nodeSelectorTerms:
@@ -1715,7 +1715,8 @@ prometheusOperator:
     #         values:
     #         - e2e-az1
     #         - e2e-az2
-  dnsConfig: {}
+  dnsConfig:
+    {}
     # nameservers:
     #   - 1.2.3.4
     # searches:
@@ -1786,7 +1787,6 @@ prometheusOperator:
 ## Deploy a Prometheus instance
 ##
 prometheus:
-
   enabled: true
 
   ## Annotations for Prometheus
@@ -1996,7 +1996,8 @@ prometheus:
 
     ## Hosts must be provided if Ingress is enabled.
     ##
-    hosts: []
+    hosts:
+      []
       # - thanos-gateway.domain.com
 
     ## Paths to use for ingress rules
@@ -2057,7 +2058,8 @@ prometheus:
     ## TLS configuration for Prometheus Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: []
+    tls:
+      []
       # - secretName: prometheus-general-tls
       #   hosts:
       #     - prometheus.example.com
@@ -2479,15 +2481,15 @@ prometheus:
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
     ##
     storageSpec:
-    ## Using PersistentVolumeClaim
-    ##
-     volumeClaimTemplate:
-       spec:
-         storageClassName: openebs-hostpath
-         accessModes: ["ReadWriteOnce"]
-         resources:
-           requests:
-             storage: 15Gi
+      ## Using PersistentVolumeClaim
+      ##
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nks-block-storage
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 15Gi
     #    selector: {}
 
     ## Using tmpfs volume
@@ -2555,11 +2557,11 @@ prometheus:
     #    relabel_configs:
     #    ...
 
-
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalScrapeConfigs
-    additionalScrapeConfigsSecret: {}
+    additionalScrapeConfigsSecret:
+      {}
       # enabled: false
       # name:
       # key:
@@ -2588,7 +2590,8 @@ prometheus:
     ## them separately from the helm deployment, you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalAlertManagerConfigs
-    additionalAlertManagerConfigsSecret: {}
+    additionalAlertManagerConfigsSecret:
+      {}
       # name:
       # key:
 
@@ -2609,7 +2612,8 @@ prometheus:
     ## them separately from the helm deployment, you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalAlertRelabelConfigs
-    additionalAlertRelabelConfigsSecret: {}
+    additionalAlertRelabelConfigsSecret:
+      {}
       # name:
       # key:
 
@@ -2632,7 +2636,8 @@ prometheus:
     ## This is experimental and may change significantly without backward compatibility in any release.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#thanosspec
     ##
-    thanos: {}
+    thanos:
+      {}
       # secretProviderClass:
       #   provider: gcp
       #   parameters:
@@ -2701,7 +2706,6 @@ prometheus:
     ## if either value is zero, in which case the non-zero value will be used. If both values are zero, no limit is enforced.
     enforcedTargetLimit: false
 
-
     ## Per-scrape limit on number of labels that will be accepted for a sample. If more than this number of labels are present
     ## post metric-relabeling, the entire scrape will be treated as failed. 0 means no limit. Only valid in Prometheus versions
     ## 2.27.0 and newer.
@@ -2732,129 +2736,129 @@ prometheus:
   ##
   # - name: ""
 
-    ## Additional labels to set used for the ServiceMonitorSelector. Together with standard labels from
-    ## the chart
-    ##
-    # additionalLabels: {}
+  ## Additional labels to set used for the ServiceMonitorSelector. Together with standard labels from
+  ## the chart
+  ##
+  # additionalLabels: {}
 
-    ## Service label for use in assembling a job name of the form <label value>-<port>
-    ## If no label is specified, the service name is used.
-    ##
-    # jobLabel: ""
+  ## Service label for use in assembling a job name of the form <label value>-<port>
+  ## If no label is specified, the service name is used.
+  ##
+  # jobLabel: ""
 
-    ## labels to transfer from the kubernetes service to the target
-    ##
-    # targetLabels: []
+  ## labels to transfer from the kubernetes service to the target
+  ##
+  # targetLabels: []
 
-    ## labels to transfer from the kubernetes pods to the target
-    ##
-    # podTargetLabels: []
+  ## labels to transfer from the kubernetes pods to the target
+  ##
+  # podTargetLabels: []
 
-    ## Label selector for services to which this ServiceMonitor applies
-    ##
-    # selector: {}
+  ## Label selector for services to which this ServiceMonitor applies
+  ##
+  # selector: {}
 
-    ## Namespaces from which services are selected
-    ##
-    # namespaceSelector:
-      ## Match any namespace
-      ##
-      # any: false
+  ## Namespaces from which services are selected
+  ##
+  # namespaceSelector:
+  ## Match any namespace
+  ##
+  # any: false
 
-      ## Explicit list of namespace names to select
-      ##
-      # matchNames: []
+  ## Explicit list of namespace names to select
+  ##
+  # matchNames: []
 
-    ## Endpoints of the selected service to be monitored
-    ##
-    # endpoints: []
-      ## Name of the endpoint's service port
-      ## Mutually exclusive with targetPort
-      # - port: ""
+  ## Endpoints of the selected service to be monitored
+  ##
+  # endpoints: []
+  ## Name of the endpoint's service port
+  ## Mutually exclusive with targetPort
+  # - port: ""
 
-      ## Name or number of the endpoint's target port
-      ## Mutually exclusive with port
-      # - targetPort: ""
+  ## Name or number of the endpoint's target port
+  ## Mutually exclusive with port
+  # - targetPort: ""
 
-      ## File containing bearer token to be used when scraping targets
-      ##
-      #   bearerTokenFile: ""
+  ## File containing bearer token to be used when scraping targets
+  ##
+  #   bearerTokenFile: ""
 
-      ## Interval at which metrics should be scraped
-      ##
-      #   interval: 30s
+  ## Interval at which metrics should be scraped
+  ##
+  #   interval: 30s
 
-      ## HTTP path to scrape for metrics
-      ##
-      #   path: /metrics
+  ## HTTP path to scrape for metrics
+  ##
+  #   path: /metrics
 
-      ## HTTP scheme to use for scraping
-      ##
-      #   scheme: http
+  ## HTTP scheme to use for scraping
+  ##
+  #   scheme: http
 
-      ## TLS configuration to use when scraping the endpoint
-      ##
-      #   tlsConfig:
+  ## TLS configuration to use when scraping the endpoint
+  ##
+  #   tlsConfig:
 
-          ## Path to the CA file
-          ##
-          # caFile: ""
+  ## Path to the CA file
+  ##
+  # caFile: ""
 
-          ## Path to client certificate file
-          ##
-          # certFile: ""
+  ## Path to client certificate file
+  ##
+  # certFile: ""
 
-          ## Skip certificate verification
-          ##
-          # insecureSkipVerify: false
+  ## Skip certificate verification
+  ##
+  # insecureSkipVerify: false
 
-          ## Path to client key file
-          ##
-          # keyFile: ""
+  ## Path to client key file
+  ##
+  # keyFile: ""
 
-          ## Server name used to verify host name
-          ##
-          # serverName: ""
+  ## Server name used to verify host name
+  ##
+  # serverName: ""
 
   additionalPodMonitors: []
   ## Name of the PodMonitor to create
   ##
   # - name: ""
 
-    ## Additional labels to set used for the PodMonitorSelector. Together with standard labels from
-    ## the chart
-    ##
-    # additionalLabels: {}
+  ## Additional labels to set used for the PodMonitorSelector. Together with standard labels from
+  ## the chart
+  ##
+  # additionalLabels: {}
 
-    ## Pod label for use in assembling a job name of the form <label value>-<port>
-    ## If no label is specified, the pod endpoint name is used.
-    ##
-    # jobLabel: ""
+  ## Pod label for use in assembling a job name of the form <label value>-<port>
+  ## If no label is specified, the pod endpoint name is used.
+  ##
+  # jobLabel: ""
 
-    ## Label selector for pods to which this PodMonitor applies
-    ##
-    # selector: {}
+  ## Label selector for pods to which this PodMonitor applies
+  ##
+  # selector: {}
 
-    ## PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
-    ##
-    # podTargetLabels: {}
+  ## PodTargetLabels transfers labels on the Kubernetes Pod onto the target.
+  ##
+  # podTargetLabels: {}
 
-    ## SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
-    ##
-    # sampleLimit: 0
+  ## SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
+  ##
+  # sampleLimit: 0
 
-    ## Namespaces from which pods are selected
-    ##
-    # namespaceSelector:
-      ## Match any namespace
-      ##
-      # any: false
+  ## Namespaces from which pods are selected
+  ##
+  # namespaceSelector:
+  ## Match any namespace
+  ##
+  # any: false
 
-      ## Explicit list of namespace names to select
-      ##
-      # matchNames: []
+  ## Explicit list of namespace names to select
+  ##
+  # matchNames: []
 
-    ## Endpoints of the selected pods to be monitored
-    ## https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#podmetricsendpoint
-    ##
-    # podMetricsEndpoints: []
+  ## Endpoints of the selected pods to be monitored
+  ## https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#podmetricsendpoint
+  ##
+  # podMetricsEndpoints: []
